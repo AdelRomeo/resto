@@ -1,10 +1,11 @@
 export default class RestoService {
-   getMenuItems() {
-    let arr = [];
-    fetch('http://localhost:3001/menu')
-      .then(res => res.json())
-      .then(data => arr = data)
-    return arr
-  }
+  url = 'http://localhost:3001/menu';
 
+  async getMenuItems() {
+    const res = await fetch(this.url);
+    if (!res.ok){
+      throw new Error('Server Error');
+    }
+    return await res.json();
+  }
 }
