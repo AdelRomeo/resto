@@ -1,5 +1,6 @@
 const initialState = {
-  menu: []
+  menu: [],
+  loading: true
 }
 
 const reducer = (state = initialState, action) => {
@@ -7,7 +8,13 @@ const reducer = (state = initialState, action) => {
     //меню загрузилось
     case 'MENU-LOADED':
       return {
-        menu: action.payload
+        menu: action.payload,
+        loading: false
+      };
+    case 'MENU-REQUESTED':
+      return {
+        menu: state.menu,
+        loading: true
       };
     default:
       return state;
